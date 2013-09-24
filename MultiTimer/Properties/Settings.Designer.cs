@@ -214,5 +214,101 @@ namespace MultiTimer.Properties {
                 this["First"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Timer1")]
+        public string Tname1 {
+            get {
+                return ((string)(this["Tname1"]));
+            }
+            set {
+                this["Tname1"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Timer2")]
+        public string Tname2 {
+            get {
+                return ((string)(this["Tname2"]));
+            }
+            set {
+                this["Tname2"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Timer3")]
+        public string Tname3 {
+            get {
+                return ((string)(this["Tname3"]));
+            }
+            set {
+                this["Tname3"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Timer4")]
+        public string Tname4 {
+            get {
+                return ((string)(this["Tname4"]));
+            }
+            set {
+                this["Tname4"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Timer5")]
+        public string Tname5 {
+            get {
+                return ((string)(this["Tname5"]));
+            }
+            set {
+                this["Tname5"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Timer6")]
+        public string Tname6 {
+            get {
+                return ((string)(this["Tname6"]));
+            }
+            set {
+                this["Tname6"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Timer7")]
+        public string Tname7 {
+            get {
+                return ((string)(this["Tname7"]));
+            }
+            set {
+                this["Tname7"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Timer8")]
+        public string Tname8 {
+            get {
+                return ((string)(this["Tname8"]));
+            }
+            set {
+                this["Tname8"] = value;
+            }
+        }
     }
 }

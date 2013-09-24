@@ -110,13 +110,16 @@ namespace MultiTimer
 
         private void button5_Click(object sender, EventArgs e)
         {
-            int f = 1 / 3;
-            label1.Text = f.ToString();
         }
 
         private void Form2_FormClosed(object sender, FormClosedEventArgs e)
         {
             this.RefToForm1.Show();
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

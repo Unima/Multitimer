@@ -50,5 +50,29 @@
     <Setting Name="First" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
+    <Setting Name="Tname1" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Timer1</Value>
+    </Setting>
+    <Setting Name="Tname2" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Timer2</Value>
+    </Setting>
+    <Setting Name="Tname3" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Timer3</Value>
+    </Setting>
+    <Setting Name="Tname4" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Timer4</Value>
+    </Setting>
+    <Setting Name="Tname5" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Timer5</Value>
+    </Setting>
+    <Setting Name="Tname6" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Timer6</Value>
+    </Setting>
+    <Setting Name="Tname7" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Timer7</Value>
+    </Setting>
+    <Setting Name="Tname8" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Timer8</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

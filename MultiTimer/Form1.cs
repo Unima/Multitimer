@@ -131,6 +131,14 @@ namespace MultiTimer
             mtimer6.BackColor = Properties.Settings.Default.Tfarbe6;
             mtimer7.BackColor = Properties.Settings.Default.Tfarbe7;
             mtimer8.BackColor = Properties.Settings.Default.Tfarbe8;
+            mtimer1.Timername = Properties.Settings.Default.Tname1;
+            mtimer2.Timername = Properties.Settings.Default.Tname2;
+            mtimer3.Timername = Properties.Settings.Default.Tname3;
+            mtimer4.Timername = Properties.Settings.Default.Tname4;
+            mtimer5.Timername = Properties.Settings.Default.Tname5;
+            mtimer6.Timername = Properties.Settings.Default.Tname6;
+            mtimer7.Timername = Properties.Settings.Default.Tname7;
+            mtimer8.Timername = Properties.Settings.Default.Tname8;
             BackColor = Properties.Settings.Default.Hintergrund;
         }
 

@@ -310,5 +310,17 @@ namespace MultiTimer.Properties {
                 this["Tname8"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string Sounddatei {
+            get {
+                return ((string)(this["Sounddatei"]));
+            }
+            set {
+                this["Sounddatei"] = value;
+            }
+        }
     }
 }

@@ -74,5 +74,8 @@
     <Setting Name="Tname8" Type="System.String" Scope="User">
       <Value Profile="(Default)">Timer8</Value>
     </Setting>
+    <Setting Name="Sounddatei" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
   </Settings>
 </SettingsFile>

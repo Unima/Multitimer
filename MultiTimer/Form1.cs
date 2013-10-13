@@ -7,12 +7,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
 
 namespace MultiTimer
 {
     public partial class Form1 : Form
     {
-        string soundpfad;
+        string sounddatei;
         int sicht_trigger = 0;
         public Form1()
         {
@@ -32,9 +33,35 @@ namespace MultiTimer
 
         public void myObject_MyEvent(Object objSender, EventArgs e)
         {
-            System.Media.SoundPlayer myPlayer = new System.Media.SoundPlayer();
-            myPlayer.SoundLocation = @"E:\Delphi Projeckte\Timer Final\timer.wav";
-            myPlayer.Play();
+            bool check = false;
+            if (File.Exists(@sounddatei))
+            {
+                check = true;
+            }
+            else
+            {
+                sounddatei = Application.StartupPath + "\\timer.wav";
+                Properties.Settings.Default.Sounddatei = sounddatei;
+                Properties.Settings.Default.Save();
+                if (File.Exists(@sounddatei))
+                {
+                    MessageBox.Show("Sound Datei Nicht vorhanden! \r\nAuf Standart gesetzt!");
+                    check = true;
+                }
+                else
+                {
+                    MessageBox.Show("Sound Datei Nicht vorhanden! \r\nStandart Datei nich vorhanden!", "Sound Fehler",
+    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    check = false;
+                }
+                
+            }
+            if (check == true)
+            {
+                System.Media.SoundPlayer myPlayer = new System.Media.SoundPlayer();
+                myPlayer.SoundLocation = @sounddatei;
+                myPlayer.Play();
+            }
             
         }
         public void timer_position()
@@ -123,14 +150,6 @@ namespace MultiTimer
         }
         public void timer_einstellung()
         {
-            mtimer1.BackColor = Properties.Settings.Default.Tfarbe1;
-            mtimer2.BackColor = Properties.Settings.Default.Tfarbe2;
-            mtimer3.BackColor = Properties.Settings.Default.Tfarbe3;
-            mtimer4.BackColor = Properties.Settings.Default.Tfarbe4;
-            mtimer5.BackColor = Properties.Settings.Default.Tfarbe5;
-            mtimer6.BackColor = Properties.Settings.Default.Tfarbe6;
-            mtimer7.BackColor = Properties.Settings.Default.Tfarbe7;
-            mtimer8.BackColor = Properties.Settings.Default.Tfarbe8;
             mtimer1.Timername = Properties.Settings.Default.Tname1;
             mtimer2.Timername = Properties.Settings.Default.Tname2;
             mtimer3.Timername = Properties.Settings.Default.Tname3;
@@ -139,7 +158,25 @@ namespace MultiTimer
             mtimer6.Timername = Properties.Settings.Default.Tname6;
             mtimer7.Timername = Properties.Settings.Default.Tname7;
             mtimer8.Timername = Properties.Settings.Default.Tname8;
+            mtimer1.BackColor = Properties.Settings.Default.Tfarbe1;
+            mtimer2.BackColor = Properties.Settings.Default.Tfarbe2;
+            mtimer3.BackColor = Properties.Settings.Default.Tfarbe3;
+            mtimer4.BackColor = Properties.Settings.Default.Tfarbe4;
+            mtimer5.BackColor = Properties.Settings.Default.Tfarbe5;
+            mtimer6.BackColor = Properties.Settings.Default.Tfarbe6;
+            mtimer7.BackColor = Properties.Settings.Default.Tfarbe7;
+            mtimer8.BackColor = Properties.Settings.Default.Tfarbe8;
             BackColor = Properties.Settings.Default.Hintergrund;
+            sounddatei = Properties.Settings.Default.Sounddatei;
+            if (File.Exists(@sounddatei))
+            { }
+            else
+            {
+                sounddatei = Application.StartupPath + "\\timer.wav";
+                Properties.Settings.Default.Sounddatei = sounddatei;
+                Properties.Settings.Default.Save();
+            }
+
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -186,6 +223,11 @@ namespace MultiTimer
             Properties.Settings.Default.Pos_main_x = this.Left;
             Properties.Settings.Default.Pos_main_y = this.Top;
             Properties.Settings.Default.Save();
+        }
+
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

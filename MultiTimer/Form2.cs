@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 // Sound
 using System.Runtime.InteropServices;
+using System.IO;
 // \Sound
 
 namespace MultiTimer
@@ -19,9 +20,19 @@ namespace MultiTimer
         public static extern int waveOutGetVolume(IntPtr hwo, out uint dwVolume);
         [DllImport("winmm.dll")]
         public static extern int waveOutSetVolume(IntPtr hwo, uint dwVolume);
+        ushort CalcVol;
+        string dateiname;
         public Form2()
         {
             InitializeComponent();
+            comboBox1.Items.AddRange(System.Enum.GetNames(typeof(KnownColor)));
+            comboBox2.Items.AddRange(System.Enum.GetNames(typeof(KnownColor)));
+            comboBox3.Items.AddRange(System.Enum.GetNames(typeof(KnownColor)));
+            comboBox4.Items.AddRange(System.Enum.GetNames(typeof(KnownColor)));
+            comboBox5.Items.AddRange(System.Enum.GetNames(typeof(KnownColor)));
+            comboBox6.Items.AddRange(System.Enum.GetNames(typeof(KnownColor)));
+            comboBox7.Items.AddRange(System.Enum.GetNames(typeof(KnownColor)));
+            comboBox8.Items.AddRange(System.Enum.GetNames(typeof(KnownColor)));
         }
         public Form RefToForm1 { get; set; }
 
@@ -49,7 +60,19 @@ namespace MultiTimer
             Properties.Settings.Default.Tname6 = textBox6.Text;
             Properties.Settings.Default.Tname7 = textBox7.Text;
             Properties.Settings.Default.Tname8 = textBox8.Text;
+            Properties.Settings.Default.Tfarbe1 = panel1.BackColor;
+            Properties.Settings.Default.Tfarbe2 = panel2.BackColor;
+            Properties.Settings.Default.Tfarbe3 = panel3.BackColor;
+            Properties.Settings.Default.Tfarbe4 = panel4.BackColor;
+            Properties.Settings.Default.Tfarbe5 = panel5.BackColor;
+            Properties.Settings.Default.Tfarbe6 = panel6.BackColor;
+            Properties.Settings.Default.Tfarbe7 = panel7.BackColor;
+            Properties.Settings.Default.Tfarbe8 = panel8.BackColor;
+            Properties.Settings.Default.Sounddatei = dateiname;
             Properties.Settings.Default.Save();
+            int NewVolume = trackBar1.Value;
+            uint NewVolumeAllChannels = (((uint)NewVolume & 0x0000ffff) | ((uint)NewVolume << 16));
+            waveOutSetVolume(IntPtr.Zero, NewVolumeAllChannels);
             this.RefToForm1.Show();
             this.Close();
         }
@@ -61,6 +84,8 @@ namespace MultiTimer
 
         private void button2_Click(object sender, EventArgs e)
         {
+            uint NewVolumeAllChannels = (((uint)CalcVol & 0x0000ffff) | ((uint)CalcVol << 16));
+            waveOutSetVolume(IntPtr.Zero, NewVolumeAllChannels);
             this.Close();
             /*
             ColorDialog dlg = new ColorDialog();
@@ -100,27 +125,94 @@ namespace MultiTimer
             // Sound
             uint CurrVol = 0;
             waveOutGetVolume(IntPtr.Zero, out CurrVol);
-            ushort CalcVol = (ushort)(CurrVol & 0x0000ffff);
+            CalcVol = (ushort)(CurrVol & 0x0000ffff);
             trackBar1.Value = CalcVol;
             int Soundvol = Convert.ToInt32(Convert.ToDouble(100) / Convert.ToDouble(65535) * Convert.ToDouble(CalcVol));
             label1.Text = Soundvol.ToString()+"%";
+            dateiname = Properties.Settings.Default.Sounddatei;
+            // Aufschlüßeln
+            aufschlüßeln();
             // \Sound
-
+            //design
+            string index;
+            index = Properties.Settings.Default.Tfarbe1.ToString();
+            comboBox1.SelectedIndex = comboBox1.FindString(index.Substring(index.IndexOf("[") + 1, index.IndexOf("]") - index.IndexOf("[") - 1));
+            index = Properties.Settings.Default.Tfarbe2.ToString();
+            comboBox2.SelectedIndex = comboBox2.FindString(index.Substring(index.IndexOf("[") + 1, index.IndexOf("]") - index.IndexOf("[") - 1));
+            index = Properties.Settings.Default.Tfarbe3.ToString();
+            comboBox3.SelectedIndex = comboBox3.FindString(index.Substring(index.IndexOf("[") + 1, index.IndexOf("]") - index.IndexOf("[") - 1));
+            index = Properties.Settings.Default.Tfarbe4.ToString();
+            comboBox4.SelectedIndex = comboBox4.FindString(index.Substring(index.IndexOf("[") + 1, index.IndexOf("]") - index.IndexOf("[") - 1));
+            index = Properties.Settings.Default.Tfarbe5.ToString();
+            comboBox5.SelectedIndex = comboBox5.FindString(index.Substring(index.IndexOf("[") + 1, index.IndexOf("]") - index.IndexOf("[") - 1));
+            index = Properties.Settings.Default.Tfarbe6.ToString();
+            comboBox6.SelectedIndex = comboBox6.FindString(index.Substring(index.IndexOf("[") + 1, index.IndexOf("]") - index.IndexOf("[") - 1));
+            index = Properties.Settings.Default.Tfarbe7.ToString();
+            comboBox7.SelectedIndex = comboBox7.FindString(index.Substring(index.IndexOf("[") + 1, index.IndexOf("]") - index.IndexOf("[") - 1));
+            index = Properties.Settings.Default.Tfarbe8.ToString();
+            comboBox8.SelectedIndex = comboBox8.FindString(index.Substring(index.IndexOf("[") + 1, index.IndexOf("]") - index.IndexOf("[") - 1));
+          
+        }
+        private void aufschlüßeln()
+        {
+            if (dateiname.Length < 34)
+            {
+                textBox9.Text = dateiname;
+            }
+            else
+            {
+                string teil_verz, teil_datei, teil_verz1, teil_lauf;
+                teil_verz = Path.GetDirectoryName(dateiname);
+                teil_datei = Path.GetFileName(dateiname);
+                teil_verz1 = teil_verz.Substring(teil_verz.LastIndexOf('\\') + 1);
+                teil_lauf = teil_verz.Substring(0, 3);
+                textBox9.Text = teil_lauf + "...\\" + teil_verz1 + "\\" + teil_datei;
+            }
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-            int NewVolume = ((ushort.MaxValue / 10) * 5);
+            int NewVolume = trackBar1.Value;
             uint NewVolumeAllChannels = (((uint)NewVolume & 0x0000ffff) | ((uint)NewVolume << 16));
             waveOutSetVolume(IntPtr.Zero, NewVolumeAllChannels);
+            bool check = false;
+            if (File.Exists(@dateiname))
+            {
+                check = true;
+            }
+            else
+            {
+                @dateiname = Application.StartupPath + "\\timer.wav";
+                Properties.Settings.Default.Sounddatei = @dateiname;
+                Properties.Settings.Default.Save();
+                if (File.Exists(@dateiname))
+                {
+                    MessageBox.Show("Sound Datei Nicht vorhanden! \r\nAuf Standart gesetzt!");
+                    check = true;
+                }
+                else
+                {
+                    MessageBox.Show("Sound Datei Nicht vorhanden! \r\nStandart Datei nich vorhanden!", "Sound Fehler",
+    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    check = false;
+                }
+
+            }
+            if (check == true)
+            {
+                System.Media.SoundPlayer myPlayer = new System.Media.SoundPlayer();
+                myPlayer.SoundLocation = @dateiname;
+                myPlayer.Play();
+            }
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
-            uint CurrVol = 0;
-            waveOutGetVolume(IntPtr.Zero, out CurrVol);
-            ushort CalcVol = (ushort)(CurrVol & 0x0000ffff);
-            label1.Text = CalcVol.ToString();
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                dateiname = openFileDialog1.FileName;
+                aufschlüßeln();
+            }
         }
 
         private void button5_Click(object sender, EventArgs e)
@@ -199,6 +291,65 @@ namespace MultiTimer
         {
             int Soundvol = Convert.ToInt32(Convert.ToDouble(100) / Convert.ToDouble(65535) * Convert.ToDouble(trackBar1.Value));
             label1.Text = Soundvol.ToString() + "%";
+        }
+
+        private void openFileDialog1_FileOk(object sender, CancelEventArgs e)
+        {
+            
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            panel1.BackColor = Color.FromName(comboBox1.SelectedItem.ToString());
+        }
+
+        private void tabPage2_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void panel3_Paint(object sender, PaintEventArgs e)
+        {
+            
+        }
+
+        private void comboBox3_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            panel3.BackColor = Color.FromName(comboBox3.SelectedItem.ToString());
+        }
+
+        private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            panel2.BackColor = Color.FromName(comboBox2.SelectedItem.ToString());
+        }
+
+        private void comboBox4_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            panel4.BackColor = Color.FromName(comboBox4.SelectedItem.ToString());
+        }
+
+        private void comboBox8_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            panel8.BackColor = Color.FromName(comboBox8.SelectedItem.ToString());
+        }
+
+        private void comboBox7_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            panel7.BackColor = Color.FromName(comboBox7.SelectedItem.ToString());
+        }
+
+        private void comboBox6_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            panel6.BackColor = Color.FromName(comboBox6.SelectedItem.ToString());
+        }
+
+        private void comboBox5_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            panel5.BackColor = Color.FromName(comboBox5.SelectedItem.ToString());
+        }
+
+        private void button5_Click_1(object sender, EventArgs e)
+        {
         }
     }
 }

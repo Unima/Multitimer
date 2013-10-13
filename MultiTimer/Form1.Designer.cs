@@ -33,7 +33,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.programmToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.trickerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.form2ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mtimer2 = new Mtimer.Mtimer();
             this.mtimer3 = new Mtimer.Mtimer();
@@ -44,12 +43,13 @@
             this.mtimer8 = new Mtimer.Mtimer();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.timer2 = new System.Windows.Forms.Timer(this.components);
+            this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // mtimer1
             // 
-            this.mtimer1.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.mtimer1.BackColor = System.Drawing.SystemColors.Control;
             this.mtimer1.Endschalter = false;
             this.mtimer1.Location = new System.Drawing.Point(12, 50);
             this.mtimer1.Name = "mtimer1";
@@ -82,18 +82,11 @@
             // programmToolStripMenuItem
             // 
             this.programmToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.trickerToolStripMenuItem,
-            this.form2ToolStripMenuItem});
+            this.form2ToolStripMenuItem,
+            this.exitToolStripMenuItem});
             this.programmToolStripMenuItem.Name = "programmToolStripMenuItem";
             this.programmToolStripMenuItem.Size = new System.Drawing.Size(76, 20);
             this.programmToolStripMenuItem.Text = "Programm";
-            // 
-            // trickerToolStripMenuItem
-            // 
-            this.trickerToolStripMenuItem.Name = "trickerToolStripMenuItem";
-            this.trickerToolStripMenuItem.Size = new System.Drawing.Size(110, 22);
-            this.trickerToolStripMenuItem.Text = "Tricker";
-            this.trickerToolStripMenuItem.Click += new System.EventHandler(this.trickerToolStripMenuItem_Click);
             // 
             // form2ToolStripMenuItem
             // 
@@ -185,6 +178,13 @@
             // 
             this.timer2.Tick += new System.EventHandler(this.timer2_Tick);
             // 
+            // exitToolStripMenuItem
+            // 
+            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.exitToolStripMenuItem.Text = "Exit";
+            this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -221,7 +221,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem programmToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem trickerToolStripMenuItem;
         private Mtimer.Mtimer mtimer2;
         private Mtimer.Mtimer mtimer3;
         private Mtimer.Mtimer mtimer4;
@@ -233,6 +232,7 @@
         private System.Windows.Forms.ToolStripMenuItem form2ToolStripMenuItem;
         public System.Windows.Forms.Timer timer2;
         private Mtimer.Mtimer mtimer1;
+        private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
     }
 }
 
